@@ -14,9 +14,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <h1>Book Branch</h1>
       <div id="page-body">
-        Welcome to Book Branch! Explore, read, share!
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />}/>
