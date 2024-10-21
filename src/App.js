@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 import Home from './pages/Home';
 import About from './pages/About';
 import BrowseBooks from './pages/BrowseBooks';
-import BookDetails from './pages/BookDetails';
+import BookDetails from './components/BookDetails';
 import Search from './pages/Search';
 import Login from './pages/Login';
 import Register from './pages/Register';
