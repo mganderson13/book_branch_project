@@ -1,4 +1,8 @@
+import FantasyBooks from "../genreImportFunctions/FantasyBooks";
 import HistoryBooks from "../genreImportFunctions/HistoryBooks";
+import MysteryBooks from "../genreImportFunctions/MysteryBooks";
+import RomanceBooks from "../genreImportFunctions/RomanceBooks";
+import ScienceBooks from "../genreImportFunctions/ScienceBooks";
 
 const BrowseBooks = () => {
     return (
@@ -8,6 +12,18 @@ const BrowseBooks = () => {
         <ul>
             <li>
                 <HistoryBooks />
+            </li>
+            <li>
+                <FantasyBooks />
+            </li>
+            <li>
+                <MysteryBooks />
+            </li>
+            <li>
+                <ScienceBooks />
+            </li>
+            <li>
+                <RomanceBooks />
             </li>
         </ul>
     </>
