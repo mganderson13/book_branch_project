@@ -28,6 +28,7 @@ const Login = () => {
         id="username" 
         name="username" 
         placeholder='Your email address'
+        value={email}
         onChange={e => setEmail(e.target.value)}
         />
         <label for="password">Password</label>
