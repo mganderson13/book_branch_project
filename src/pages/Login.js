@@ -22,11 +22,11 @@ const Login = () => {
         <>
         <h1>Login Page</h1>
         {error && <p className="error">{error}</p>}
-        <label for="username">Username</label>
+        <label for="email">Email</label>
         <input 
         type="text" 
-        id="username" 
-        name="username" 
+        id="email" 
+        name="email" 
         placeholder='Your email address'
         value={email}
         onChange={e => setEmail(e.target.value)}

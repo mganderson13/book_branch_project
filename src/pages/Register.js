@@ -10,28 +10,50 @@ const Register = () => {
     
     const navigate = useNavigate();
 
-    const register = async() => {
-        try{
+    const register = async () => {
+        try {
             if (password !== confirmPassword) {
-                setError('Password and confirm password do not match');
+                setError('Passwords do not match');
                 return;
             }
+
+            // Create user in Firebase Authentication
             await createUserWithEmailAndPassword(getAuth(), email, password);
-            navigate('/home');
+
+            // Send user data to your backend
+            const response = await fetch('http://localhost:8000/api/register', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to register user");
+            }
+
+            navigate('/login'); // Redirect to login page after successful registration
         } catch (e) {
-            setError(e.message)
+            setError(e.message);
         }
-    }
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        await register(); // Calls register when the form is submitted
+    };
 
     return (
         <>
         <h1>Register an Account with Book Branch</h1>
         {error && <p className="error">{error}</p>}
-        <label for="username">Username</label>
+        <form onSubmit={handleSubmit}>
+        <label for="email">Email</label>
         <input 
         type="text" 
-        id="username" 
-        name="username" 
+        id="email" 
+        name="email" 
         placeholder='Your email address'
         value={email}
         onChange={e => setEmail(e.target.value)}
@@ -54,9 +76,10 @@ const Register = () => {
         value={confirmPassword}
         onChange={e => setConfirmPassword(e.target.value)}
         />
-        <button onClick={register} >Register</button>
+        <button type="submit">Register</button>
+        </form>
         <br></br>
-        <Link to="/lgoin">Already have an account? Click here to log in.</Link>
+        <Link to="/login">Already have an account? Click here to log in.</Link>
         </>
     );
 }
