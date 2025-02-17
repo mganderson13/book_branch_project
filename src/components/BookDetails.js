@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import AddReviewForm from './AddReviewForm';
 
 const BookDetails = () => {
     const { id } = useParams();
     const [book, setBook] = useState({});
+
 
     useEffect(() => {
         async function fetchData() {
@@ -28,6 +30,7 @@ const BookDetails = () => {
                 ) : (
                     <div>No Image Available</div>
                 )}
+                <AddReviewForm />
                 <h3>Title: {book.volumeInfo.title}</h3>
                 <h3>Author: {book.volumeInfo.authors}</h3>
                 {book.volumeInfo.description ? (

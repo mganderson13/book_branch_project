@@ -21,7 +21,7 @@ const Register = () => {
             await createUserWithEmailAndPassword(getAuth(), email, password);
 
             // Send user data to your backend
-            const response = await fetch('http://localhost:8000/api/register', {
+            const response = await fetch('/api/register', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const Register = () => {
         <h1>Register an Account with Book Branch</h1>
         {error && <p className="error">{error}</p>}
         <form onSubmit={handleSubmit}>
-        <label for="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input 
         type="text" 
         id="email" 
@@ -58,7 +58,7 @@ const Register = () => {
         value={email}
         onChange={e => setEmail(e.target.value)}
         />
-        <label for="password">Password</label>
+        <label htmlFor="password">Password</label>
         <input 
         type="password"
         id="password"
@@ -67,7 +67,7 @@ const Register = () => {
         value={password}
         onChange={e => setPassword(e.target.value)}
         />
-        <label for="confirmPassword">Re-enter your password</label>
+        <label htmlFor="confirmPassword">Re-enter your password</label>
         <input 
         type="password"
         id="confirmPassword"
