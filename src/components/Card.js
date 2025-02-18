@@ -26,7 +26,6 @@ const BookCard = ({ book }) => {
                 ) : (
                     <p>No Description Available</p>
                 )}
-             <p><a href={book.volumeInfo.previewLink} target="_blank" rel="noreferrer">Read this book</a></p>
         </Link>
         </div>
     );
