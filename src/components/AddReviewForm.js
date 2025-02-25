@@ -8,7 +8,7 @@ const AddReviewForm = () => {
     const [rating, setRating] = useState('');
     const [error, setError] = useState('');
 
-    const { user, isLoading } = useUser();
+    const { user } = useUser();
     const navigate = useNavigate();
     const dialogRef = useRef(null);
     const { id } = useParams();
@@ -30,7 +30,6 @@ const AddReviewForm = () => {
 
         const auth = getAuth();
         const user = auth.currentUser;
-        console.log(user);
         if (!user) {
             setError("User not authenitcated");
             return;
