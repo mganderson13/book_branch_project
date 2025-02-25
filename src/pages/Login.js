@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -8,6 +8,7 @@ const Login = () => {
     const [error, setError] = useState('');
 
     const navigate = useNavigate();
+    const auth = getAuth();
 
     const logIn = async () => {
         try{
@@ -16,6 +17,15 @@ const Login = () => {
         } catch (e) {
             setError(e.message);
         }
+    }
+
+    const handleSignOut = () => {
+
+        signOut(auth).then(() => {
+            navigate("/");
+        }).catch((error) => {
+            console.error("Sign-out error:", error);
+        });
     }
 
     return (
@@ -43,6 +53,7 @@ const Login = () => {
         <button onClick={logIn} >Log In</button>
         <br></br>
         <Link to="/register">Don't have an account? Click here to register.</Link>
+        <button onClick={handleSignOut} >Sign Out</button>
         </>
     );
 }

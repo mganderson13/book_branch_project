@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AddReviewForm from './AddReviewForm';
+import bookImage from "../assets/bookImage.jpg";
 
 const BookDetails = () => {
     const { id } = useParams();
@@ -28,7 +29,7 @@ const BookDetails = () => {
                 {book.volumeInfo.imageLinks ? (
                     <img src={book.volumeInfo.imageLinks.smallThumbnail} alt={book.volumeInfo.title} />
                 ) : (
-                    <div>No Image Available</div>
+                  <img src={bookImage} alt={book.volumeInfo.title}/>
                 )}
                 <AddReviewForm />
                 <h3>Title: {book.volumeInfo.title}</h3>
