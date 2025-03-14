@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import bookImage from "../assets/bookImage.jpg";
 
 const BookCard = ({ book }) => {
         // Function to limit the description to a certain number of words (instead of characters with substring)
@@ -10,22 +11,24 @@ const BookCard = ({ book }) => {
     return description;
   };
     return (
-        <div>
+        <div className="bookCard">
         <Link to={`/details/${book.id}`}>
+          <div className="bookCardInfo">
             {/* book image, or generic image if not available */}
             {book.volumeInfo.imageLinks ? (
                 <img src={book.volumeInfo.imageLinks.smallThumbnail} alt={book.volumeInfo.title} />
                 ) : (
-                    <div>No Image Available</div>
+                  <img src={bookImage} alt={book.volumeInfo.title}/>
                 )}
-             <h3>Title: {book.volumeInfo.title}</h3>
-             <h3>Author: {book.volumeInfo.authors}</h3>
+             <h3 className="cardText">Title: {book.volumeInfo.title}</h3>
+             <h3 className="cardText">Author: {book.volumeInfo.authors}</h3>
              {/*book description, or "not availabe" if not availabe */}
              {book.volumeInfo.description ? (
-                    <p>{limitDescription(book.volumeInfo.description, 25)}</p>
+                    <p className="cardText">{limitDescription(book.volumeInfo.description, 25)}</p>
                 ) : (
-                    <p>No Description Available</p>
+                    <p className="cardText">No Description Available</p>
                 )}
+          </div>
         </Link>
         </div>
     );

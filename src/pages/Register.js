@@ -78,8 +78,7 @@ const Register = () => {
         />
         <button type="submit">Register</button>
         </form>
-        <br></br>
-        <Link to="/login">Already have an account? Click here to log in.</Link>
+        <Link to="/login" className='loginLink'>Already have an account? Click here to log in.</Link>
         </>
     );
 }

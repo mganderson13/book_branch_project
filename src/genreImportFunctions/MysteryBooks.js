@@ -19,8 +19,8 @@ useEffect(() => {
 
 return (
     <div>
-      <h3>Mystery Books</h3>
-      <ul>
+      <h3 className='genreTitle'>Mystery Books</h3>
+      <ul className="browseLists">
       {books.map(book => (
           <BookCard key={book.id} book={book} />
         ))}

@@ -32,7 +32,7 @@ return (
     <h2>Search by typing in any keyword.</h2>
     <form onSubmit={handleSubmit}>
         <label>Keyword: 
-            <input type="text" name="keyword" value = {inputValue}
+            <input id="searchInput" type="text" name="keyword" value = {inputValue}
         onChange={(e) => setInputValue(e.target.value )}/>
         </label>
         <button type="submit">Search</button>
@@ -40,7 +40,7 @@ return (
 
         <div>
           <h2>Search Results:</h2>
-          <ul>
+          <ul className='searchResults'>
             {books.map(book => (
               <BookCard key={book.id} book={book}/>
             ))}

@@ -4,10 +4,10 @@ import ProfileCard from "../components/profileCard";
 
 const UserProfile = () => {
     const [books, setBooks] =useState([]);
+    const auth = getAuth();
 
 useEffect(() => {
     const fetchUserBooks = async () => {
-        const auth = getAuth();
         const user = auth.currentUser;
       
         if (!user) {
@@ -32,7 +32,6 @@ useEffect(() => {
           }
       
           const booksData = await response.json();
-          console.log(booksData);
           setBooks(booksData);
         } catch (error) {
           console.error("Error fetching user books:", error);
@@ -40,6 +39,7 @@ useEffect(() => {
       };
 fetchUserBooks();
 }, []); 
+
 
     return(
         <>
