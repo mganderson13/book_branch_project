@@ -4,10 +4,10 @@ import ProfileCard from "../components/profileCard";
 
 const UserProfile = () => {
     const [books, setBooks] =useState([]);
-    const auth = getAuth();
 
 useEffect(() => {
     const fetchUserBooks = async () => {
+      const auth = getAuth();
         const user = auth.currentUser;
       
         if (!user) {
