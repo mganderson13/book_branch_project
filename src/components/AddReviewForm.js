@@ -18,6 +18,8 @@ const AddReviewForm = () => {
   }
 
   function closeModal() {
+    setReview('');
+    setRating('');  
     dialogRef.current?.close();
   }
 
@@ -31,13 +33,13 @@ const AddReviewForm = () => {
         const auth = getAuth();
         const user = auth.currentUser;
         if (!user) {
-            setError("User not authenitcated");
+            setError("User not authenticated");
             return;
         }
         const email = user.email; 
 
-        // Send user data to your backend
-        const response = await fetch(`/api/details/${id}`, {
+        // Send user data to backend
+        const response = await fetch(`/api/details/${id}/review`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",
@@ -68,6 +70,7 @@ const handleSubmit = async (event) => {
       
       <dialog ref={dialogRef} id="dialogForm">
         <form onSubmit={handleSubmit} id="addReviewForm">
+          <button type="button" onClick={closeModal} id="exit">X</button>
           <h3>Add a Review for this book</h3>
           {error && <p className="error">{error}</p>}
           <label htmlFor="review">Review</label>
@@ -94,8 +97,7 @@ const handleSubmit = async (event) => {
             <label htmlFor="star1" title="1 star">☆</label>
           </div>
 
-          <button type="submit" id="addReviewButton">Submit Review</button>
-          <button type="button" onClick={closeModal} id="exit">X</button>
+          <button type="submit" id="addReviewButton">Save Book</button>
         </form>
       </dialog>
     </>

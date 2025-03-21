@@ -5,7 +5,7 @@ body {
 }
 
 button {
-  padding: 16px;
+  padding: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
   background-color: black;
@@ -207,11 +207,37 @@ input:focus, textarea:focus, #searchInput:focus {
   gap: 20px;
 }
 
+/* Book Details CSS */
+.bookDetails img {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.saveButtonDescriptions {
+  font-size: 12px;
+}
+
+/* Review Form CSS */
+#addReviewForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#exit {
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+  align-self: end;
+}
+
 /* Star Rating CSS */
 .rating {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: center;
+  margin-right: 110px;
+  margin-bottom: 10px;
   font-size: 2rem;
   cursor: pointer;
 }
@@ -221,7 +247,7 @@ input:focus, textarea:focus, #searchInput:focus {
 }
 
 .rating label {
-  color: lightgray;
+  color: rgb(128, 126, 126);
   transition: color 0.3s;
 }
 

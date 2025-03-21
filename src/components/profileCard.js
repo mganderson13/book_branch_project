@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import bookImage from "../assets/bookImage.jpg";
 
@@ -26,6 +27,7 @@ const ProfileCard = ({ book, id }) => {
 
     return (
         <>
+        <Link to={`/details/${id}`}>
         {googleBook.volumeInfo ? (
             <>
                 {googleBook.volumeInfo.imageLinks ? (
@@ -42,7 +44,7 @@ const ProfileCard = ({ book, id }) => {
             <p>Rating: {rating}</p>
             <p>Review: {review}</p>
         </div>
-            
+        </Link>
         </>
     )
 }

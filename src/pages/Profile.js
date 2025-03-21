@@ -4,6 +4,7 @@ import ProfileCard from "../components/profileCard";
 
 const UserProfile = () => {
     const [books, setBooks] =useState([]);
+    const [loading, setLoading] = useState(true);
 
 useEffect(() => {
     const fetchUserBooks = async () => {
@@ -12,6 +13,7 @@ useEffect(() => {
       
         if (!user) {
           console.error("No authenticated user found");
+          setLoading(false);
           return;
         }
       
@@ -35,26 +37,31 @@ useEffect(() => {
           setBooks(booksData);
         } catch (error) {
           console.error("Error fetching user books:", error);
-        }
+        }finally {
+          setLoading(false); // Stop loading after fetch (success or error)
+      }
       };
-fetchUserBooks();
+
+  fetchUserBooks();
 }, []); 
 
 
     return(
-        <>
+      <>
         <h1>Welcome to your book branch!</h1>
-        <ul>
-            {books.length > 0 ? (
-      books.map(book => (
+        {loading ? (
+          <p>Loading...</p>
+        ) : books.length > 0 ? (
+      <ul>
+        {books.map(book => (
           <ProfileCard key={book.bookID} book={book} id={book.bookID}/>
-        ))
-    ) :(
+        ))}
+        </ul>
+    ) : (
         <p>You don't have any saved books yet! Browse or search to add books you've read!</p>
     )}
-      </ul>
 
-        </>
+      </>
     )
 }
 

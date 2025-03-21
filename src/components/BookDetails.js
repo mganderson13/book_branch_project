@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AddReviewForm from './AddReviewForm';
 import bookImage from "../assets/bookImage.jpg";
+import SaveBookButton from './SaveBookButton';
 
 const BookDetails = () => {
     const { id } = useParams();
@@ -23,6 +24,7 @@ const BookDetails = () => {
 
       return (
         <>
+        <div className='bookDetails'>
           <h2>Book Details</h2>
           {book.volumeInfo ? (
             <>
@@ -31,7 +33,11 @@ const BookDetails = () => {
                 ) : (
                   <img src={bookImage} alt={book.volumeInfo.title}/>
                 )}
+                <br></br>
+                <p className='saveButtonDescriptions'>Have you read this book? Save it to your Book Branch with a review</p>
                 <AddReviewForm />
+                <p className='saveButtonDescriptions'>Interested in reading this book? Save it to your Book Branch for later</p>
+                <SaveBookButton />
                 <h3>Title: {book.volumeInfo.title}</h3>
                 <h3>Author: {book.volumeInfo.authors}</h3>
                 {book.volumeInfo.description ? (
@@ -41,11 +47,12 @@ const BookDetails = () => {
                 )}
                 <p>Page count: {book.volumeInfo.pageCount}</p>
                 <p>Genres: {book.volumeInfo.categories}</p>
-                <p><a href={book.volumeInfo.previewLink} target="_blank" rel="noreferrer">Read this book</a></p>
+                <p><a href={book.volumeInfo.previewLink} target="_blank" rel="noreferrer">Find this book online --&gt;</a></p>
             </>
           ) : (
             <div>Loading...</div>
           )}
+        </div>
         </>
       );
 }
