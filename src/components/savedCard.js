@@ -36,10 +36,10 @@ const SavedCard = ({ book, id }) => {
                 />
                 ) : (
                 <img src={bookImage} alt={googleBook.volumeInfo.title} className="profileCardImage"/>
-                )}
-                <div className="profileCardText">                
+                )}                
+                <div className="profileCardText">
                 <h3>Title: {googleBook.volumeInfo.title}</h3>
-                <p className='saveButtonDescriptions'>Have you read this book? Click the book to add a review!</p>
+                <p className='saveButtonDescriptions'>Did you read this Saved Book? Click the book to add a review!</p>
                 </div>
             </>
             ) : (

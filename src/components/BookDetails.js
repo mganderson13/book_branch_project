@@ -28,16 +28,13 @@ const BookDetails = () => {
           <h2>Book Details</h2>
           {book.volumeInfo ? (
             <>
+              <div className='bookDetailsTop'>
                 {book.volumeInfo.imageLinks ? (
                     <img src={book.volumeInfo.imageLinks.smallThumbnail} alt={book.volumeInfo.title} />
                 ) : (
                   <img src={bookImage} alt={book.volumeInfo.title}/>
                 )}
-                <br></br>
-                <p className='saveButtonDescriptions'>Have you read this book? Save it to your Book Branch with a review</p>
-                <AddReviewForm />
-                <p className='saveButtonDescriptions'>Interested in reading this book? Save it to your Book Branch for later</p>
-                <SaveBookButton />
+                <div className='bookDetailsTopText'>
                 <h3>Title: {book.volumeInfo.title}</h3>
                 <h3>Author: {book.volumeInfo.authors}</h3>
                 {book.volumeInfo.description ? (
@@ -47,6 +44,12 @@ const BookDetails = () => {
                 )}
                 <p>Page count: {book.volumeInfo.pageCount}</p>
                 <p>Genres: {book.volumeInfo.categories}</p>
+                </div>
+                </div>
+                <p className='saveButtonDescriptions'>Have you read this book? Save it to your Book Branch with a review</p>
+                <AddReviewForm />
+                <p className='saveButtonDescriptions'>Interested in reading this book? Save it to your Book Branch for later</p>
+                <SaveBookButton />
                 <p><a href={book.volumeInfo.previewLink} target="_blank" rel="noreferrer">Find this book online --&gt;</a></p>
             </>
           ) : (

@@ -217,9 +217,27 @@ input:focus, textarea:focus, #searchInput:focus {
 }
 
 /* Book Details CSS */
+
+.bookDetailsTop {
+  display: flex;
+  margin-left: 50px;
+}
+
+.bookDetailsTopText p,
+.bookDetailsTopText h3 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
 .bookDetails img {
   width: 200px;
+  height: 275px;
   margin-bottom: 20px;
+  margin-right: 50px;
+}
+
+.bookDetailsTopText {
+  width: 70%;
 }
 
 .saveButtonDescriptions {
