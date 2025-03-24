@@ -3,7 +3,7 @@ import useUser from '../hooks/useUser';
 import { useNavigate, useParams } from "react-router-dom";
 import { getAuth } from 'firebase/auth';
 
-const AddReviewForm = () => {
+const AddReviewForm = ({ reviewed }) => {
     const [review, setReview] = useState('');
     const [rating, setRating] = useState('');
     const [error, setError] = useState('');
@@ -59,13 +59,21 @@ const AddReviewForm = () => {
 
 const handleSubmit = async (event) => {
     event.preventDefault();
+    const showModal = document.getElementById('showModal');
+    showModal.disabled = true;
+    showModal.innerText = 'Book Reviewed ✔';
+    showModal.classList.add('disabledButton');
     await Review(); // Calls review when the form is submitted
 };
 
   return (
     <>
         {user ?
-        <button onClick={showModal} id="showModal">Add a review</button>
+          !reviewed ? (
+          <button onClick={showModal} id="showModal">Add a review</button>
+          ) : (
+          <button id="showModal" className='disabledButton' title='Book already in your Book Branch!'>Book Reviewed ✔</button>
+          )
       : <button onClick={() => {navigate("/login")}}>Log in to add a review</button>}
       
       <dialog ref={dialogRef} id="dialogForm">

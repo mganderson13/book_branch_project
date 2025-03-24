@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getAuth } from "firebase/auth";
 import { useParams } from 'react-router-dom';
 import AddReviewForm from './AddReviewForm';
 import bookImage from "../assets/bookImage.jpg";
@@ -7,7 +8,9 @@ import SaveBookButton from './SaveBookButton';
 const BookDetails = () => {
     const { id } = useParams();
     const [book, setBook] = useState({});
-
+    const [reviewed, setReviewed] =useState(false);
+    const [saved, setSaved] =useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
@@ -21,6 +24,47 @@ const BookDetails = () => {
         };
         fetchData();
       }, [id]);
+  
+  useEffect(() => {
+      const fetchReviewedSaved = async () => {
+        const auth = getAuth();
+          const user = auth.currentUser;
+        
+          if (!user) {
+            console.error("No authenticated user found");
+            setLoading(false);
+            return;
+          }
+        
+          try {
+            const token = await user.getIdToken(); // Get Firebase ID token
+        
+            const response = await fetch(`/api/details/${id}/checkstatus`, {
+              method: "GET",
+              headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+            });
+            
+        
+            if (!response.ok) {
+              throw new Error("Failed to fetch books");
+            }
+        
+            const bookStatus = await response.json();
+            console.log('bookStatus:', bookStatus);
+            setReviewed(bookStatus.reviewed);
+            setSaved(bookStatus.saved);
+          } catch (error) {
+            console.error("Error fetching user books:", error);
+          }finally {
+            setLoading(false); // Stop loading after fetch (success or error)
+        }
+        };
+  
+    fetchReviewedSaved();
+  }, [id]);
 
       return (
         <>
@@ -47,9 +91,9 @@ const BookDetails = () => {
                 </div>
                 </div>
                 <p className='saveButtonDescriptions'>Have you read this book? Save it to your Book Branch with a review</p>
-                <AddReviewForm />
+                <AddReviewForm reviewed={reviewed}/>
                 <p className='saveButtonDescriptions'>Interested in reading this book? Save it to your Book Branch for later</p>
-                <SaveBookButton />
+                <SaveBookButton saved={saved} reviewed = {reviewed}/>
                 <p><a href={book.volumeInfo.previewLink} target="_blank" rel="noreferrer">Find this book online --&gt;</a></p>
             </>
           ) : (

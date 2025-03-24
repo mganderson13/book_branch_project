@@ -244,6 +244,12 @@ input:focus, textarea:focus, #searchInput:focus {
   font-size: 12px;
 }
 
+.disabledButton {
+  background-color: rgb(110, 109, 109);
+  cursor: auto;
+  border: none;
+}
+
 /* Profile CSS */
 #profileHeading {
   font-size: 50px;
