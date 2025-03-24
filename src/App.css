@@ -36,6 +36,7 @@ a, a:link, a:visited{
 nav {
   border-bottom: 4px solid black;
   position: fixed;
+  z-index: 4;
   top: 0;
   width: 100%;
   height: 75px;
@@ -83,6 +84,7 @@ nav a:hover {
   height: 25px;
   padding: 0px;
   background-color: rgb(69, 69, 69);
+  margin-left: 10px;
 }
 
 #page-body {
@@ -126,6 +128,13 @@ nav a:hover {
 
 .homeParagraphsDiv p {
   margin-right: 100px;
+}
+
+/* About CSS */
+.aboutBranchImage {
+  width: 550px;
+  height: 80px;
+  transform: scaleY(-1) rotate(3deg);
 }
 
 /* Browsing and Book Card CSS */
@@ -215,6 +224,82 @@ input:focus, textarea:focus, #searchInput:focus {
 
 .saveButtonDescriptions {
   font-size: 12px;
+}
+
+/* Profile CSS */
+#profileHeading {
+  font-size: 50px;
+  margin-top: 0;
+  margin-bottom: 100px;
+}
+
+.bookColumns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.reviewedColumn {
+  width: 50%;
+}
+
+.savedColumn {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.columnTitles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+}
+
+.profileSubheading {
+  line-height: 0px;
+  z-index: 2;
+}
+
+.branchImage {
+  width: 400px;
+  height: 75px;
+  transform: scaleY(-1) rotate(3deg);
+  line-height: 0px;
+  z-index: 1;
+}
+
+.profileCardContainer {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 3px solid rgb(29, 76, 29);
+  padding-bottom: 50px;
+  padding-top: 20px;
+}
+
+.profileCardImage {
+  width: 175px;
+  height: 200px;
+  margin-right: 10px;
+  border: 2px solid white;
+}
+
+.profileCardImage:hover {
+  border: 2px solid rgb(197, 220, 197);
+}
+
+.profileCardText {
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+  max-width: 100%; 
+  color: rgb(29, 76, 29);
+}
+
+.profileCardText h3,
+.profileCardText p {
+  margin: 5px 0; /* Reduce vertical spacing */
 }
 
 /* Review Form CSS */

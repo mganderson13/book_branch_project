@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import bookImage from "../assets/bookImage.jpg";
 
-const ProfileCard = ({ book, id }) => {
+const SavedCard = ({ book, id }) => {
 
     const [googleBook, setGoogleBook] = useState({});
     useEffect(() => {
@@ -23,30 +23,32 @@ const ProfileCard = ({ book, id }) => {
         return <p>No book data available.</p>;
     }
 
-    const { rating, review } = book; 
-
     return (
         <>
-        <Link to={`/details/${id}`}>
-        {googleBook.volumeInfo ? (
+        <Link to={`/details/${id}`} className="profileCardContainer">
+            {googleBook.volumeInfo ? (
             <>
                 {googleBook.volumeInfo.imageLinks ? (
-                    <img src={googleBook.volumeInfo.imageLinks.smallThumbnail} alt={googleBook.volumeInfo.title} />
+                <img
+                    src={googleBook.volumeInfo.imageLinks.smallThumbnail}
+                    alt={googleBook.volumeInfo.title}
+                    className="profileCardImage"
+                />
                 ) : (
-                    <img src={bookImage} alt={googleBook.volumeInfo.title}/>
+                <img src={bookImage} alt={googleBook.volumeInfo.title} className="profileCardImage"/>
                 )}
+                <div className="profileCardText">                
                 <h3>Title: {googleBook.volumeInfo.title}</h3>
+                <p className='saveButtonDescriptions'>Have you read this book? Click the book to add a review!</p>
+                </div>
             </>
-                ) : (
-                    <div>Loading title and picture...</div>
-                )}
-        <div>
-            <p>Rating: {rating}</p>
-            <p>Review: {review}</p>
-        </div>
+            ) : (
+            <div>Loading title and picture...</div>
+            )}
         </Link>
         </>
+
     )
 }
 
-export default ProfileCard;
+export default SavedCard;
